@@ -24,7 +24,7 @@ class _homePageState extends State<homePage> {
 
   @override
   void initState() {
-    _postStore.fetchPosts();
+    _postStore.fetchPosts(http.Client());
     super.initState();
   }
 

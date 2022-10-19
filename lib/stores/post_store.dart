@@ -12,12 +12,14 @@ abstract class Posts with Store {
   List<Post>? posts = [Post(userId: -1, id: -1, title: 'error', body: 'error')];
 
   @action
-  Future fetchPosts() async{
+  Future<List<Post>?> fetchPosts(http.Client client) async{
     var tempPosts = await RemoteServices().getPosts(http.Client());
     if(tempPosts != null)
       {
-        posts = tempPosts;
+        posts = postFromJson(tempPosts);
       }
+
+    return tempPosts;
   }
 
 }

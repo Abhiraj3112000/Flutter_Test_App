@@ -1,13 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:api_test/services/remote_services.dart' ;
-// import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'mockdata.dart';
 
 void main() {
-
   group('test api', () {
     test('returns address when http response is successful',
             () async {

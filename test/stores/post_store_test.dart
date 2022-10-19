@@ -7,7 +7,7 @@ import 'package:http/testing.dart';
 import 'mockdata.dart';
 
 void main() {
-  group('test api', () {
+  group('test post store', () {
     test('updates store with posts when http response is successful',
             () async {
 

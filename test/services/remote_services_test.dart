@@ -8,7 +8,7 @@ import 'mockdata.dart';
 
 void main() {
 
-  group('test api', () {
+  group('test post api', () {
     test('returns proper json data when http response is successful',
             () async {
 

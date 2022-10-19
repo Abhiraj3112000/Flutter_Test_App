@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 
-void main() => runApp(const AnimeFacts());
+void main() => runApp(const TestApp());
 
-class AnimeFacts extends StatelessWidget {
-  const AnimeFacts({Key? key}) : super(key: key);
+class TestApp extends StatelessWidget {
+  const TestApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

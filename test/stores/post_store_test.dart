@@ -7,7 +7,7 @@ import 'mockdata.dart';
 
 void main() {
   group('test api', () {
-    test('returns address when http response is successful',
+    test('returns proper json data when http response is successful',
             () async {
 
           // Mock the API call to return a json response with http status 200 Ok //

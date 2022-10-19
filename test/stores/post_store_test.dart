@@ -36,10 +36,11 @@ void main() {
       });
 
       final postStore = PostStore();
+      final expectedPosts = [Post(userId: -1, id: -1, title: 'error', body: 'error')];
 
       await postStore.fetchPosts(mockHTTPClient);
 
-      final expectedPosts = [Post(userId: -1, id: -1, title: 'error', body: 'error')];
+
 
       expect(postStore.posts, expectedPosts);
     });

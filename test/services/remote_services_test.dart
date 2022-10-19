@@ -23,7 +23,7 @@ void main() {
           expect(await RemoteServices().getPosts(mockHTTPClient), jsonEncode(mock_data));
         });
 
-    test('return null when http response is unsuccessful', () async {
+    test('returns null when http response is unsuccessful', () async {
 
       // Mock the API call to return an
       // empty json response with http status 404

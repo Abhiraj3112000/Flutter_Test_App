@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:equatable/equatable.dart';
 
 List<Post> postFromJson(String str) =>
     List<Post>.from(json.decode(str).map((x) => Post.fromJson(x)));
@@ -6,7 +7,7 @@ List<Post> postFromJson(String str) =>
 String postToJson(List<Post> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Post {
+class Post extends Equatable{
   Post({
     required this.userId,
     required this.id,
@@ -14,10 +15,13 @@ class Post {
     required this.body,
   });
 
-  int userId;
-  int id;
-  String title;
-  String body;
+  final int userId;
+  final int id;
+  final String title;
+  final String body;
+
+  @override
+  List<Object> get props => [userId, id, title, body];
 
   factory Post.fromJson(Map<String, dynamic> json) => Post(
         userId: json["userId"],

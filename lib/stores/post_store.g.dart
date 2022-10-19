@@ -28,7 +28,7 @@ mixin _$PostStore on Posts, Store {
       AsyncAction('Posts.fetchPosts', context: context);
 
   @override
-  Future<List<Post>?> fetchPosts(http.Client client) {
+  Future<dynamic> fetchPosts(http.Client client) {
     return _$fetchPostsAsyncAction.run(() => super.fetchPosts(client));
   }
 

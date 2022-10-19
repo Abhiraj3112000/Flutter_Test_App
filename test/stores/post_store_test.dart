@@ -1,5 +1,6 @@
+import 'package:api_test/stores/post_store.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:api_test/services/remote_services.dart' ;
+import 'package:api_test/models/post.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
@@ -7,18 +8,22 @@ import 'mockdata.dart';
 
 void main() {
   group('test api', () {
-    test('returns proper json data when http response is successful',
+    test('updates store with posts when http response is successful',
             () async {
 
           // Mock the API call to return a json response with http status 200 Ok //
           final mockHTTPClient = MockClient((request) async {
-
             // Create sample response of the HTTP call //
             final response = jsonEncode(mock_data);
             return Response(response, 200);
           });
 
-          expect(await RemoteServices().getPosts(mockHTTPClient), jsonEncode(mock_data));
+          final postStore = PostStore();
+          final expectedPosts = postFromJson(jsonEncode(mock_data));
+
+          await postStore.fetchPosts(mockHTTPClient);
+
+          expect(postStore.posts, expectedPosts);
         });
 
     test('return error message when http response is unsuccessful', () async {
@@ -26,11 +31,17 @@ void main() {
       // Mock the API call to return an
       // empty json response with http status 404
       final mockHTTPClient = MockClient((request) async {
-        const response = null;
-        return Response(jsonEncode(response), 404);
+        var response = jsonEncode(null);
+        return Response(response, 404);
       });
-      expect(await RemoteServices().getPosts(mockHTTPClient),
-          null);
+
+      final postStore = PostStore();
+
+      await postStore.fetchPosts(mockHTTPClient);
+
+      final expectedPosts = [Post(userId: -1, id: -1, title: 'error', body: 'error')];
+
+      expect(postStore.posts, expectedPosts);
     });
   });
 }

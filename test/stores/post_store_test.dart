@@ -26,7 +26,7 @@ void main() {
           expect(postStore.posts, expectedPosts);
         });
 
-    test('return error message when http response is unsuccessful', () async {
+    test('updates store with error post when http response is unsuccessful', () async {
 
       // Mock the API call to return an
       // empty json response with http status 404

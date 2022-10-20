@@ -40,8 +40,6 @@ void main() {
 
       await postStore.fetchPosts(mockHTTPClient);
 
-
-
       expect(postStore.posts, expectedPosts);
     });
   });
